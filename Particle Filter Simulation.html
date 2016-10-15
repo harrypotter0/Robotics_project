@@ -1,0 +1,85 @@
+<!DOCTYPE html5>
+
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Particle Filters</title>
+	
+	<link rel="stylesheet" type="text/css" href="./Particle Filter Simulation_files/main_style.css">
+	<link rel="stylesheet" type="text/css" href="./Particle Filter Simulation_files/menu_and_banner.css">
+	<!--link rel="stylesheet" type="text/css" href="/~teammco/css/bgcanvas.css"-->
+	<link rel="stylesheet" type="text/css" href="./Particle Filter Simulation_files/footer.css">
+	<script async="" src="./Particle Filter Simulation_files/analytics.js"></script><script type="text/javascript" src="./Particle Filter Simulation_files/jquery-1.8.2.min.js"></script><style type="text/css"></style>
+	<script type="text/javascript" src="./Particle Filter Simulation_files/main_menu_dropdown.js"></script>
+	<!--script type="text/javascript" src="/~teammco/scripts/animatebg.js"></script-->
+<
+<link rel="stylesheet" href="https://www.cs.utexas.edu/~teammco/misc/particle_filter/jquery-ui/sunny.css">
+<script src="./Particle Filter Simulation_files/jquery-ui-slider.js"></script>
+
+
+<link rel="stylesheet" href="https://www.cs.utexas.edu/~teammco/misc/particle_filter/style.css">
+
+<!-- main page Javascript code: contains slider code -->
+<script type="text/javascript" src="./Particle Filter Simulation_files/script.js"></script>
+
+
+
+</head>
+
+
+<body style="background-color:white;">
+<div id="content">
+<h4 style="float:right"><a href = "file:///home/prateek/Desktop/ai-robotics-project/Searching.html">Part-4 Searching Algorithms</a></h4>
+<h2>3. Particle Filters</h2>
+<script src="./Particle Filter Simulation_files/lightbox.js"></script><link href="https://www.cs.utexas.edu/~teammco/lightbox2/lightbox.css" rel="stylesheet"><h1>
+<!-- Particle Filter Canvas -->
+<p><canvas id="pf_canvas" width="860" height="540" style="background: #000000" onmousemove="updatePosition(event);" onmousedown="toggleMove(event);">
+</canvas></p>
+
+<!-- Particle Filter code -->
+<script type="text/javascript" src="./Particle Filter Simulation_files/particleFilter.js"></script>
+
+<p>
+	<button onclick="toggleAnimation();" title="Pause and Resume Animation" style="width: 110px;">
+		<b><span id="on_or_off">Pause</span></b></button>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<button onclick="resetValues();" title="Reset Everything to Default">
+		<b>Restore Default Values</b></button>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<button onclick="restart();" title="Clear Particles and Restart Animation" style="width: 110px;">
+		<b>Restart</b></button>
+</p>
+
+<p></p><center><table id="pf_options">
+<tbody><tr>
+	<td>
+		<b>Number of Particles:</b>
+		<div style="width:300px;" id="number_slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="https://www.cs.utexas.edu/~teammco/misc/particle_filter/#" style="left: 87.7877877877878%;"></a></div>
+		<div id="number_val">878</div>
+	</td>
+	<td>
+		<b>Animation Speed (FPS):</b>
+		<div style="width:300px;" id="speed_slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="https://www.cs.utexas.edu/~teammco/misc/particle_filter/#" style="left: 10.1694915254237%;"></a></div>
+		<div id="speed_val">7 FPS</div>
+	</td>
+</tr>
+<tr>
+	<td>
+		<b>Random Walk Frequency:</b>
+		<div style="width:300px;" id="rw_freq_slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="https://www.cs.utexas.edu/~teammco/misc/particle_filter/#" style="left: 16.6666666666667%;"></a></div>
+		<div id="rw_freq_val">Every 5 Frames</div>
+	</td>
+	<td>
+		<b>Random Walk Max Distance:</b>
+		<div style="width:300px;" id="rw_dist_slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="https://www.cs.utexas.edu/~teammco/misc/particle_filter/#" style="left: 13.3333333333333%;"></a></div>
+		<div id="rw_dist_val">40</div>
+	</td>
+</tr>
+</tbody></table></center><p></p>
+
+<p><b>Robot Position: </b> (<span id="positionText">439, 48</span>) </p>
+
+<br><br>
+
+</div>
+</div>
+</body>
+</html>

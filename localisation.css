@@ -1,0 +1,23 @@
+#world{
+	display: flex;
+	width:auto;
+	height: 100px;
+	background:aliceblue;
+	padding: 10px;
+}
+.world-cell{
+	height: 80px;
+	width: 80px;
+	background-color:orange;
+	margin:10px;
+}
+.red{
+	background-color: red;
+}
+.green{
+	background-color: green;
+}
+#example1{
+	width: 400px;
+	height: 400px;
+}

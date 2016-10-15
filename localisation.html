@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+</head>
+	<title>Localisation </title>
+
+	<meta http-equiv="content-type" content="text/html; charset=UTF8">
+	<script type="text/javascript" src="xchart/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="xchart/d3.js"></script>
+	<script type="text/javascript" src="xchart/xcharts.js"></script>
+	<script type="text/javascript" src="xchart/xcharts.min.js"></script>
+	<script type="text/javascript" src="localisation.js"></script>
+	
+	<link rel="stylesheet" href="xchart/xcharts.css"/>
+	<link rel="stylesheet" href="localisation.css"/>
+
+</head>
+<body>
+<h4 style="float:right"><a href = "file:///home/prateek/Desktop/ai-robotics-project/kalman.html">Part-2 Kalman Filters</a></h4>
+	<form>
+	<h2> 1. Localisation </h2>
+	
+
+		World Size : <input type="text" id="no_of_cells" placeholder="Enter World Size"  value="5"/>
+		Measurements : <input type="text" id="measure" value="R,G">
+		Motion : <input type="text" id="motion" value="1,1">
+	</form>
+	<button onclick="generate_world()">Generate World </button>
+	<button onclick="update_world()">Update World </button>
+	<div id="world">
+	</div>
+	<div id ="message_one">
+	</div>
+	<button onclick="final_data()">Perform Localiation </button>
+
+	<figure id="example1" >
+	
+	</figure>
+
+</body>
+
+
+
+</html>
+
+
+

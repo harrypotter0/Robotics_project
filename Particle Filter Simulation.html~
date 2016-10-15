@@ -1,0 +1,208 @@
+<!DOCTYPE html5>
+<!-- saved from url=(0056)https://www.cs.utexas.edu/~teammco/misc/particle_filter/ -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Particle Filter Simulation</title>
+	
+	<link rel="stylesheet" type="text/css" href="./Particle Filter Simulation_files/main_style.css">
+	<link rel="stylesheet" type="text/css" href="./Particle Filter Simulation_files/menu_and_banner.css">
+	<!--link rel="stylesheet" type="text/css" href="/~teammco/css/bgcanvas.css"-->
+	<link rel="stylesheet" type="text/css" href="./Particle Filter Simulation_files/footer.css">
+	<link href="https://www.cs.utexas.edu/~teammco/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<script async="" src="./Particle Filter Simulation_files/analytics.js"></script><script type="text/javascript" src="./Particle Filter Simulation_files/jquery-1.8.2.min.js"></script><style type="text/css"></style>
+	<script type="text/javascript" src="./Particle Filter Simulation_files/main_menu_dropdown.js"></script>
+	<!--script type="text/javascript" src="/~teammco/scripts/animatebg.js"></script-->
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-37662370-2', 'utexas.edu');
+  ga('send', 'pageview');
+
+</script>
+
+<!-- jQuery UI sliders: -->
+<link rel="stylesheet" href="https://www.cs.utexas.edu/~teammco/misc/particle_filter/jquery-ui/sunny.css">
+<script src="./Particle Filter Simulation_files/jquery-ui-slider.js"></script>
+
+
+<!-- main page stylesheet: updated style for sliders -->
+<link rel="stylesheet" href="https://www.cs.utexas.edu/~teammco/misc/particle_filter/style.css">
+
+<!-- main page Javascript code: contains slider code -->
+<script type="text/javascript" src="./Particle Filter Simulation_files/script.js"></script>
+
+
+
+</head>
+
+
+<body>
+
+<div id="container">
+
+	<div id="header">
+		<img id="banner_image" src="./Particle Filter Simulation_files/banner.jpg">
+
+	<div id="main_menu"> <ul><li class="first"><a class="not_selected" href="https://www.cs.utexas.edu/~teammco/"><img id="home_icon" src="./Particle Filter Simulation_files/home_icon.png"></a></li><li><a class="not_selected" href="https://www.cs.utexas.edu/~teammco/projects/">Projects</a></li><li><a class="not_selected" href="https://www.cs.utexas.edu/~teammco/research/">Research</a></li><li><a class="not_selected" href="https://www.cs.utexas.edu/~teammco/teaching/">Teaching</a></li><li><a class="not_selected" href="https://www.cs.utexas.edu/~teammco/resume/">Resume</a></li><li><a class="selected" href="https://www.cs.utexas.edu/~teammco/misc/">Misc</a></li></ul><div id="links_menu">
+<a href="mailto:teammco@cs.utexas.edu" title="Email"><img src="./Particle Filter Simulation_files/email.png"></a>
+<a href="http://www.youtube.com/user/ivcode" title="YouTube"><img src="./Particle Filter Simulation_files/youtube.png"></a>
+<a href="http://www.linkedin.com/pub/richard-teammco/90/885/b69" title="LinkedIn"><img src="./Particle Filter Simulation_files/linkedin.png"></a>
+<a href="https://github.com/teammcr192" title="GitHub"><img src="./Particle Filter Simulation_files/github.png"></a>
+</div>
+</div>
+	</div>
+	
+	<div id="content">
+<script src="./Particle Filter Simulation_files/lightbox.js"></script><link href="https://www.cs.utexas.edu/~teammco/lightbox2/lightbox.css" rel="stylesheet"><h1>Particle Filter Simulation</h1><h3>This simulation was used as a means to test our implementation of particle
+		filter localization on a NAO robot for a class project. We set up six beacons
+		in the lab, and determined the robot's distance and angle from each one using		vision-based blob detection.
+		These measurements, along with known real-world positions of each beacon,
+		were used by the particle filter to approximate the robot's position and
+		orientation.</h3><br>
+
+<!-- Particle Filter Canvas -->
+<p><canvas id="pf_canvas" width="860" height="540" style="background: #000000" onmousemove="updatePosition(event);" onmousedown="toggleMove(event);">
+Your browser does not support the canvas element.
+</canvas></p>
+
+<!-- Particle Filter code -->
+<script type="text/javascript" src="./Particle Filter Simulation_files/particleFilter.js"></script>
+
+<p>
+	Move your mouse around the screen to move the robot.
+	Click to
+	<b><span id="lock_unlock_pos" style="color: red;">lock</span></b>
+	the robot's position.
+</p>
+
+
+<p>
+	<button onclick="toggleAnimation();" title="Pause and Resume Animation" style="width: 110px;">
+		<font color="#006600"><b><span id="on_or_off">Pause</span></b></font></button>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<button onclick="resetValues();" title="Reset Everything to Default">
+		<font color="#990000"><b>Restore Default Values</b></font></button>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<button onclick="restart();" title="Clear Particles and Restart Animation" style="width: 110px;">
+		<font color="#990000"><b>Restart</b></font></button>
+</p>
+
+<p></p><center><table id="pf_options">
+<tbody><tr>
+	<td>
+		<b>Number of Particles:</b>
+		<div style="width:300px;" id="number_slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="https://www.cs.utexas.edu/~teammco/misc/particle_filter/#" style="left: 87.7877877877878%;"></a></div>
+		<div id="number_val">878</div>
+	</td>
+	<td>
+		<b>Animation Speed (FPS):</b>
+		<div style="width:300px;" id="speed_slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="https://www.cs.utexas.edu/~teammco/misc/particle_filter/#" style="left: 10.1694915254237%;"></a></div>
+		<div id="speed_val">7 FPS</div>
+	</td>
+</tr>
+<tr>
+	<td>
+		<b>Random Walk Frequency:</b>
+		<div style="width:300px;" id="rw_freq_slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="https://www.cs.utexas.edu/~teammco/misc/particle_filter/#" style="left: 16.6666666666667%;"></a></div>
+		<div id="rw_freq_val">Every 5 Frames</div>
+	</td>
+	<td>
+		<b>Random Walk Max Distance:</b>
+		<div style="width:300px;" id="rw_dist_slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="https://www.cs.utexas.edu/~teammco/misc/particle_filter/#" style="left: 13.3333333333333%;"></a></div>
+		<div id="rw_dist_val">40</div>
+	</td>
+</tr>
+</tbody></table></center><p></p>
+
+<p><b>Robot Position: </b> (<span id="positionText">439, 48</span>) </p>
+
+<br><br>
+
+<p><small>Click on an image to enlarge.</small></p><p><table class="image_and_text"><tbody><tr><td><a href="./Particle Filter Simulation_files/nao.jpg" title="NAO humanoid robots" rel="lightbox"><img src="./Particle Filter Simulation_files/nao.jpg" width="213" height="142/"></a></td><td>The robot is displayed in the simulation as a
+		<span style="background: black; color: #FFFFFF;">white square</span>,
+		but its actual position is not known by the particle filter. That is
+		what the particle filter is trying to estimate. In the lab, we worked
+		with the Aldebaran NAO humanoid robot.</td></tr></tbody></table></p><p><table class="image_and_text"><tbody><tr><td>There are six localization beacons, each represented by a
+		<span style="background: black; color: #FFFF00;">yellow square</span>.
+		The position of each beacon is known by the particle filter. The
+		robot determines its distance from each beacon it sees (in the case
+		of the simulation, no sensing is actually necessary - we just use the
+		distance formula between the robot and each beacon).</td><td><a href="./Particle Filter Simulation_files/beacons.jpg" title="Localization beacons that we used in the lab" rel="lightbox"><img src="./Particle Filter Simulation_files/beacons.jpg" width="222" height="143/"></a></td></tr></tbody></table></p><p><table class="image_and_text"><tbody><tr><td><a href="./Particle Filter Simulation_files/particles.png" title="Particles" rel="lightbox"><img src="./Particle Filter Simulation_files/particles.png" width="100" height="200/"></a></td><td>All of the particles, represented by small
+		<span style="background: black; color: A0A0FF;">blue squares</span>,
+		are initially placed around the map (screen) randomly. Their weights
+		are set to 1.0. Then every frame, each particle's weight is degraded based on
+		its distance to each beacon as compared to the robot's distance to said
+		beacon. For example, if the robot is 500 pixels from beacon A and particle
+		<i>n</i> is 1000 pixels from beacon A, the probability that particle
+		<i>n</i> accurately represents the location of the robot must be decreased.
+		If a particle's weight goes below a pre-defined threshold, we replace that
+		particle with a copy of the particle that currently has the greatest weight.
+		That way, over time, the particles that do not accurately represent the robot's
+		location will be filtered out.</td></tr></tbody></table></p><p><table class="image_and_text"><tbody><tr><td>There is always a chance that none of the particles will end up near the
+		correct location. To deal with this problem, the particle filter does a
+		"random walk" where each particle is randomly moved some distance every
+		few frames (the frequency and distance of the random walk can be adjusted in
+		this simulation). Although this may cause some particles to move away from the
+		robot's actual location, it will also cause some to move the right way. Thus,
+		if all particles end up in the wrong place, the random walk ensures that they
+		will not become "stuck" there. Additionally, if the robot is suddenly
+		moved (the
+		<a href="http://en.wikipedia.org/wiki/Kidnapped_robot_problem">
+		kidnapped robot problem</a>) to a different place, the random walk
+		allows the particle filter to re-discover the right location.</td><td><a href="./Particle Filter Simulation_files/random_walk.png" title="Randomly moving all particles" rel="lightbox"><img src="./Particle Filter Simulation_files/random_walk.png" width="135" height="165/"></a></td></tr></tbody></table></p><p><table class="image_and_text"><tbody><tr><td><a href="./Particle Filter Simulation_files/movement.png" rel="lightbox"><img src="./Particle Filter Simulation_files/movement.png" width="100" height="100/"></a></td><td>When the robot starts moving, all particles are moved by the same amount.
+		This allows the particle filter to respond more quickly to changes in the
+		robot's position. In this simulation, steadily moving the robot will also
+		move the particles.</td></tr></tbody></table></p><p><table class="image_and_text"><tbody><tr><td>The estimated robot location is shown by the
+		<span style="background: black; color: 00FF00;">green circle</span>.
+		This circle is centered at the weighted average location of all particles.
+		That is, each particle's weight (i.e. probability) is taken into account
+		to calculate the estimated robot position. The
+		<span style="background: black; color: FF0000;">red circle</span>
+		represents the unweighted (direct) average location of all particles,
+		providing a slightly less accurate estimate.</td><td><a href="./Particle Filter Simulation_files/circles.png" rel="lightbox"><img src="./Particle Filter Simulation_files/circles.png" width="230" height="100/"></a></td></tr></tbody></table></p><br>
+
+<p>
+	This simulation only deals with the robot's location, and not its orientation.
+	Once we were able to get the location part to work, adapting the filter to also
+	handle orientation was trivial.
+</p>
+<p>
+	The Particle Filter simulator source code can be viewed
+	<a href="./Particle Filter Simulation_files/particleFilter.js">here</a>.
+</p>
+
+
+<br><br><br><p><button title="Return To Projects Page" class="return_button" onclick="parent.location = &#39;/~teammco/misc/&#39;">Back To Misc Page</button></p><p><a href="https://www.cs.utexas.edu/~teammco/misc/particle_filter/#">Back to Top</a></p>	</div>
+	
+	<div id="footer">
+		<table>
+			<tbody><tr>
+				<td><a title="Information about this website and resources used to make it" href="https://www.cs.utexas.edu/~teammco/site/about_site.php">About This Website</a>
+					</td>
+				<td><a title="Information about me" href="https://www.cs.utexas.edu/~teammco/site/about_me.php">About Me</a>
+					</td>
+				<td><a title="Overview of this website&#39;s content" href="https://www.cs.utexas.edu/~teammco/site/site_map.php">Site Map</a>
+					</td>
+			</tr>
+			<tr>
+				<td><a title="My YouTube page where I upload project-related videos" href="http://www.youtube.com/user/ivcode">YouTube</a>
+					</td>
+				<td><a title="My GitHub page where I upload project source code" href="https://github.com/teammcr192">GitHub</a>
+					</td>
+				<td><a title="University of Texas at Austin - Department of Computer Science" href="https://www.cs.utexas.edu/">UTCS</a>
+					</td>
+			</tr>
+		</tbody></table>
+		        
+        <p id="designed_by">
+            Website design by Richard Teammco.
+        </p>
+	</div>
+
+</div>
+
+
+<div id="lightboxOverlay" style="display: none;"></div><div id="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image"><div class="lb-nav"><a class="lb-prev"></a><a class="lb-next"></a></div><div class="lb-loader"><a class="lb-cancel"><img src="./Particle Filter Simulation_files/loading.gif"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"><img src="./Particle Filter Simulation_files/close.png"></a></div></div></div></div></body></html>
